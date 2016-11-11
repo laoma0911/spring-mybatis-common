@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/aop     http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx      http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       ">
+	<aop:aspectj-autoproxy />
+	<context:annotation-config />
+	<!-- 扫描配置属性注入 -->
+	<context:component-scan base-package="com.laoma.springmvc" />
+	<!-- 配置事务 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<tx:advice id="transactionManagerAdivice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="NEVER" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="count*" propagation="SUPPORTS" />
+			<tx:method name="get*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>
+	<bean id="serviceThrowsAdvice" class="com.laoma.springmvc.aop.ServiceThrowsAdvice"></bean>
+	<aop:config>
+		<!-- 配置service层次回滚 -->
+		<aop:pointcut expression="execution(* com.laoma.springmvc.service.impl.*.*(..))" id="servicePointcut" />
+		<aop:advisor advice-ref="transactionManagerAdivice" pointcut-ref="servicePointcut" />
+		<aop:aspect id="afterThrowingAdviceAspect" ref="serviceThrowsAdvice" order="1">
+			<aop:after-throwing pointcut-ref="servicePointcut" method="afterThrowing" arg-names="ex" throwing="ex" />
+		</aop:aspect>
+	</aop:config>
+	<!-- 配置事务结束 -->
+	<bean id="userService" class="com.laoma.springmvc.service.impl.UserServiceImpl">
+		<constructor-arg index="0" ref="userDao" />
+	</bean>
+
+</beans>

@@ -1,0 +1,70 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>大姨吗管理后台</title>
+    <!-- Bootstrap -->
+    <link href="bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="bootstrap/assets/styles.css" rel="stylesheet" media="screen">
+     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="bootstrap/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+  </head>
+  
+  <body id="login">
+    <div class="container">
+
+      <form class="form-signin" action="" method="post" id="forms" style="margin:0 auto!important;" autocomplete="off">
+        <h3 class="form-signin-heading">Please sign in Admin</h3>
+        <input type="text" class="input-block-level username" name="username" placeholder="Username" />
+        <input type="password" class="input-block-level password" name="password" placeholder="Password" />
+         <input type="text" class="input-block-level" name="code" id="code" placeholder="验证码"   style="width: 140px;"/>
+        <img alt="点我刷新" name="randImage" onclick="loadimage()" id="randImage" src="./code"  border="1" />
+        <br>
+        <button class="btn btn-large btn-primary">Login</button>
+      </form>
+
+    </div> <!-- /container -->
+    <script src="bootstrap/vendors/jquery-1.9.1.min.js"></script>
+    <script src="bootstrap/bootstrap/js/bootstrap.min.js"></script>
+    <script>
+		$(function(){
+			$(".btn-primary").click(function() {				
+				var username = $(".username").val();
+				var password = $(".password").val();
+				if (!username) {
+					alert("用户名不能为空！");
+					$(".username").focus();
+					return false;
+				}
+				if (!password) {
+					alert("密码不能为空！");
+					$(".password").focus();
+					return false;
+				}
+				checklogin();
+				return false;
+			});
+
+
+			function checklogin() {
+				$.post("./checkLogin",$('#forms').serialize(),function (data){
+					if(data.errno==0) {
+						window.location.href= "./home";
+					}else{
+                    	alert(data.errdesc);
+                    	loadimage();
+                    	$("#code").val("");
+                    }
+				});
+			}
+		});
+		function loadimage(){ 
+				document.getElementById("randImage").src = "./code?"+Math.random(); 
+		} 
+    </script>
+  </body>
+</html>

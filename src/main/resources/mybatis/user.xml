@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.laoma.springmvc.model.user">
+	<sql id="SelectSQL">
+		select id,name,password,nick,group_id as groupId, status,uids
+	</sql>
+	<insert id="insert" parameterType="User" useGeneratedKeys="true">
+		insert
+		into
+		`user`(id,name,password,nick,group_id,status,uids)
+		values
+		(#{id},#{name},#{password},#{nick},#{groupId},#{status},#{uids})
+	</insert>
+	<delete id="delete" parameterType="Long">
+		delete from `user` where id=#{id}
+	</delete>
+	<select id="countByFilter" parameterType="string" resultType="int">
+		select count(1) from `user`
+		<where>${WhereSQL}</where>
+	</select>
+	<select id="findByFilter" parameterType="java.util.Map"
+	        resultType="User">
+		<include refid="SelectSQL"/>
+		from `user`
+		<where>${WhereSQL}</where>
+		${SortSQL}
+	</select>
+	<select id="getByPK" parameterType="long" resultType="User">
+		<include refid="SelectSQL"/>
+		from `user` where id=#{id}
+	</select>
+	<update id="updateByBean" parameterType="User">update `user` set
+		password=#{password},name=#{name},nick=#{nick},group_id=#{groupId},status=#{status},uids=#{uids}
+		where id=#{id}
+	</update>
+	<select id="findByName" parameterType="string" resultType="User">
+		<include refid="SelectSQL"/>
+		from `user` where name=#{name}
+	</select>
+</mapper>
