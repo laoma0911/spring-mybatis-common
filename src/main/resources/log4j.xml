@@ -16,7 +16,7 @@
 	</appender>
 
 	<appender name="DebugRollingFile" class="org.apache.log4j.FileAppender">
-		<param name="File" value="${nose.root}/logs/nose.log"/>
+		<param name="File" value="${spring.mybatis.common.root}/logs/log.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c [%t] %-5p %x - %m%n"/>
 		</layout>
@@ -28,7 +28,7 @@
 	</appender>
 
 	<appender name="ErrorRollingFile" class="org.apache.log4j.FileAppender">
-		<param name="File" value="${nose.root}/logs/nose-error.log"/>
+		<param name="File" value="${spring.mybatis.common.root}/logs/log-error.log"/>
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d - %c -%-4r [%t] %-5p %x - %m%n"/>
 		</layout>
@@ -53,7 +53,7 @@
 	</logger>
 
 	<root>
-		<priority value="INFO"/>
+		<priority value="debug"/>
 		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="DebugRollingFile"/>
 		<appender-ref ref="ErrorRollingFile"/>

@@ -6,9 +6,9 @@
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<!-- 基本属性 url、user、password -->
-		<property name="url" value="jdbc:mysql://127.0.0.1:3306/spring-mybatis-common?allowMultiQueries=true" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+		<property name="url" value="jdbc:mysql://10.69.205.36:3306/meipro_1?allowMultiQueries=true" />
+		<property name="username" value="meipro-dev" />
+		<property name="password" value="123.gome" />
 
 		<!-- 配置初始化大小、最小、最大 -->
 		<property name="initialSize" value="1" />

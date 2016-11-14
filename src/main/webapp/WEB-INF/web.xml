@@ -7,7 +7,7 @@
 
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>nose.root</param-value>
+		<param-value>spring.mybatis.common.root</param-value>
 	</context-param>
 
 	<context-param>
@@ -88,8 +88,4 @@
 		<welcome-file>login.html</welcome-file>
 	</welcome-file-list>
 
-	<taglib>
-		<taglib-uri>/permission</taglib-uri>
-		<taglib-location>/WEB-INF/permission.tld</taglib-location>
-	</taglib>
 </web-app>
