@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="com.laoma.springmvc.model.user">
 	<sql id="SelectSQL">
-		select id,name,password,nick,group_id as groupId, status,uids
+		select
 	</sql>
 	<insert id="insert" parameterType="User" useGeneratedKeys="true">
 		insert
 		into
-		`user`(id,name,password,nick,group_id,status,uids)
+		`user`(id,name,password,nick,status)
 		values
-		(#{id},#{name},#{password},#{nick},#{groupId},#{status},#{uids})
+		(#{id},#{name},#{password},#{nick},#{status})
 	</insert>
 	<delete id="delete" parameterType="Long">
 		delete from `user` where id=#{id}
@@ -30,7 +30,7 @@
 		from `user` where id=#{id}
 	</select>
 	<update id="updateByBean" parameterType="User">update `user` set
-		password=#{password},name=#{name},nick=#{nick},group_id=#{groupId},status=#{status},uids=#{uids}
+		password=#{password},name=#{name},nick=#{nick},status=#{status}
 		where id=#{id}
 	</update>
 	<select id="findByName" parameterType="string" resultType="User">
