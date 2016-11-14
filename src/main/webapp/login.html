@@ -1,12 +1,39 @@
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" xmlns="http://www.w3.org/1999/html"/>
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Hello Spring-Mybatis-Common Deom!</title>
 
-  </head>
-  
-  <body>
-   <h1>Hello World!</h1>
-  </body>
+</head>
+
+<body>
+
+Hello reader：
+<blockquote>
+    该项目是演示mybatis-common(自己封装的dao层，支持分页，自定义查询等。。。详情见：<a href="https://github.com/laoma0911/mybatis-common">mybatis-common【git地址】</a>)如何使用的。</br>
+    好吧，我想弄好看点，巴特我不会css。。。什么鬼！</br>
+    详细描述见git里的README吧！<a href="https://github.com/laoma0911/spring-mybatis-common">spring-mybatis-common【git地址】</a>
+</blockquote>
+
+<hr style="height:3px;border:none;border-top:3px double red;"/>
+
+<h2>进入正题吧，为了方便使用RequestMapping没有要求请求方式</br></h2>
+
+
+<ul type="square" style="margin-top:20px">
+    <li>1.<a href="http://localhost:8080/user/insert?nick=test_insert&name=Test_User&password=123456">insert（添加测试）</a></li>
+    <li>2.<a href="http://localhost:8080/user/find?id=1">findbyid(通过id查询)</a></li>
+    <li>3.<a href="http://localhost:8080/user/update?id=1&nick=user_updatet&name=Test_Update&password=123456">update(修改测试)</a></li>
+    <li>4.<a href="http://localhost:8080/user/filter_EQ?name=Test_Update">filter_EQ(filter只用情形1[EQ方式，寻找相等的属性，详情见controller])</a></li>
+    <li>5.<a href="http://localhost:8080/user/filter_NEQ?name=Test_Update">filter_NEQ(filter只用情形2[EQ方式，≠ 使用，详情见controller])</a></li>
+    <li>6.<a href="http://localhost:8080/user/filter_LK?name=Test_Update">filter_LK(filter只用情形3[EQ方式，like使用，详情见controller])</a></li>
+    <li>7.<a href="http://localhost:8080/user/filter_NLK?name=Test_Update">filter_NLK(filter只用情形4[EQ方式，not like使用，详情见controller])</a></li>
+    <li>8.<a href="http://localhost:8080/user/filter_IN?name=Test_Update">filter_IN(filter只用情形5[IN方式，in查询，详情见controller])</a></li>
+    <li>9.<a href="http://localhost:8080/user/filter_IN?name=Test_Update">filter_IN(filter只用情形5[IN方式，in查询，详情见controller])</a></li>
+    <li>10.<a href="http://localhost:8080/user/filter_SORT?name=Test_Update">filter_SORT(filter只用情形6[SORT方式，排序，详情见controller])</a></li>
+    <li>11.<a href="http://localhost:8080/user/filter_Page?name=Test_Update">filter_Page(filter只用情形7[Page方式，分页查询，详情见controller])</a></li>
+</ul>
+
+
+</body>
 </html>
