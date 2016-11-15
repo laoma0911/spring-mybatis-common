@@ -6,7 +6,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * 自定义aop
+ * 自定义aop异常类
  * Created by mazhenbang on 2016/11/11.
  */
 public class ServiceThrowsAdvice implements ThrowsAdvice {
