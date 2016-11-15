@@ -31,7 +31,20 @@ public class AuthFilter implements HandlerInterceptor {
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) throws Exception {
-
+        if (modelAndView == null)
+            return;
+        String start = request.getParameter("start");
+        if (start != null && !"".equals(start)) {
+            modelAndView.addObject("start", start);
+        } else {
+            modelAndView.addObject("start", 1);
+        }
+        String limit = request.getParameter("limit");
+        if (limit != null && !"".equals(limit)) {
+            modelAndView.addObject("limit", limit);
+        } else {
+            modelAndView.addObject("limit", 25);
+        }
     }
 
     /**
